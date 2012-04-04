@@ -11,15 +11,16 @@
 // P1_0 = Gray Code
 // P1_1 = Gray Code
 // P1_1 = Gray Code
-// P2 = LCD
+// P2   = LCD
 //----------------------------------------------------------------------------
 
-#define LCD_LENGTH 16 // 16 plus \0 termination?
+#define LCD_LENGTH 16 	// 16 plus \0 termination?
 
 #include <m8c.h>        // part specific constants and macros
 #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
 #include <stdio.h>
-
+#include <HYT271.h>		//include C-Code from the humidity and temperature Sensor
+/*
 typedef enum {
 	overview = 0,
 	temp = 1,
@@ -27,12 +28,18 @@ typedef enum {
 	rain = 3,
 	wind = 4,
 } MODE;
+*/
 
 void main(void)
 {
+
 	//Variables
 	char lcdFirstLine[LCD_LENGTH], lcdSecondLine[LCD_LENGTH];
-	char displaymode = 0;
+	int displaymode = 0;
+	int temperature[5];
+	int humidity[5];
+	
+	
 	
 	/** init **/
 	
@@ -52,28 +59,33 @@ void main(void)
 	LCD_PrString(lcdFirstLine);
 	LCD_Position(1,0);
 	LCD_PrString(lcdSecondLine);
-	
+
+
 	while(1) {
-		// get temp and humidity here
+	
 		
+		measuring(temperature, humidity);
+	
+		
+		displaymode =1;
 		switch(displaymode) {
-			case overview:
+			case 0:
 				// overview();
 				break;
 				
-			case temp:
-				// temp();
+			case 1:
+				printtemp(lcdFirstLine, lcdSecondLine, temperature);
 				break;
 				
-			case humidity:
-				// humidity();
+			case 2:
+				printhum(lcdFirstLine, lcdSecondLine, humidity);
 				break;
 				
-			case rain:
+			case 3:
 				// rain();
 				break;
 				
-			case wind:
+			case 4:
 				// wind();
 				break;
 		
@@ -92,4 +104,6 @@ void main(void)
 		// lets sleep for a while
 		SleepTimer_SyncWait(8, SleepTimer_WAIT_RELOAD);
 	}
-}
+	}
+
+

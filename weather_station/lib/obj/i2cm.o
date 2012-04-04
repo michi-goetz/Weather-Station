@@ -15,7 +15,7 @@ dbfile memory.inc
 dbfunc 0 ? 0 I
 dbfile lib/i2cm.asm
 dbfunc 0 ? 0 I
-dbfile C:/PROGRA~2/Cypress/PSOCDE~1/5.2/Common/CY110F~1/tools/include/CY8C27~1/m8c.inc
+dbfile C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY110F~1/tools/include/CY8C27~1/m8c.inc
 dbfunc 0 ? 0 I
 A weather_station_RAM size 4 flags 20
 S I2Cm_bData Def0001
