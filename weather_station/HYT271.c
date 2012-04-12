@@ -1,9 +1,11 @@
 
 
-#include "PSoCAPI.h"
+
+#include <m8c.h>        		// part specific constants and macros
+#include "PSoCAPI.h"    		// PSoC API definitions for all User Modules
+
 #include <stdio.h>
 #include <stdlib.h>
-
 
 	void measuring (int*temperature, int*humidity) {
 	
@@ -11,10 +13,11 @@
 		//get temp and humidity here
 		
 
-		int capdata07, capdata813, tempdata, humdata, i;
+		int capdata07, capdata813, tempdata, humdata;
+		int i;
 		
-		I2Cm_Start();				//Initialize I2C
-		I2Cm_fSendStart( 0x28, 0);	//Send Measuring Request
+		//I2Cm_Start();				//Initialize I2C
+		//I2Cm_fSendStart( 0x28, 0);	//Send Measuring Request
 		I2Cm_fSendStart( 0x28, 1);	//Send Data Fetch
 		
 		capdata813=I2Cm_bRead (I2Cm_ACKslave);
@@ -28,8 +31,8 @@
 		humdata=capdata813|capdata07;
 		humdata=humdata&0x3FFF;
 		
-		humdata=100/2^14*humdata;
-		tempdata=165/2^14*tempdata-40;
+		humdata=( humdata / 163.83 ) - 48;
+		tempdata=-((tempdata / 99.2909 ) -28);
 		
 		
 		
@@ -49,9 +52,10 @@
 		void printtemp (char *firstLine, char *secondLine, int*temperature) {
 					//calculate the average of temperature
 					int result, i;
-					result = 0;
-					for(i=0; i<5; i++) result = result + temperature [i]; 
-					result = result/5;
+					//result = 0;
+					//for(i=0; i<5; i++) result = result + temperature [i]; 
+					//result = result/5;
+					result=temperature[4];
 					
 					//send to LCD
 					csprintf(firstLine, "Temperature:    ");
@@ -64,13 +68,14 @@
 		void printhum (char *firstLine, char *secondLine, int*humidity) {
 					//calculate the average of humidity
 					int result, i;
-					result = 0;
-					for(i=0; i<5; i++) result = result + humidity [i];
-					result = result/5;
-					
+					//result = 0;
+					//for(i=0; i<5; i++) result = result + humidity [i];
+					//result = result/5;
+					result =humidity[4];
 					//send to LCD
 					csprintf(firstLine, "Humidity:       ");
-					csprintf(secondLine,"%i  %           ",result);
+					csprintf(secondLine,"%i %%           ",result);
+					//csprintf(secondLine[4], 0x25);
 					}
 					
 					

@@ -1,6 +1,6 @@
 Project:      output/weather_station
 Build Number: 0
-Date:         Wed Apr 04 12:04:37 2012
+Date:         Thu Apr 12 10:55:49 2012
 Compiler:     ICCM8C
 Version:      7.05.00
 
@@ -130,26 +130,26 @@ Area                               Addr   Size   Decimal Bytes (Attributes)
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
-                            text   0B91   0C69 =   3177. bytes (rel,con,rom,code)
+                            text   0B91   0FBA =   4026. bytes (rel,con,rom,code)
 
        Addr  Global Symbol
       -----  --------------------------------
        0B91  _measuring
        0B91  __text_start
-       0CC7  _printtemp
-       0D3E  _printhum
-       0DB5  _main
-       0FF6  __plcall
-       1002  _itoa
-       117F  _utoa
-       127D  _isdigit
-       129B  _islower
-       12B9  _isspace
-       12D7  _toupper
-       130C  __csdepi
-       1326  _csprintf
-       1365  __cprint
-       17FA  __text_end
+       0DAA  _printtemp
+       0DE6  _printhum
+       0E22  _main
+       1347  __plcall
+       1353  _itoa
+       14D0  _utoa
+       15CE  _isdigit
+       15EC  _islower
+       160A  _isspace
+       1628  _toupper
+       165D  __csdepi
+       1677  _csprintf
+       16B6  __cprint
+       1B4B  __text_end
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
@@ -238,8 +238,11 @@ Files Linked      [ module(s) ]
 ./obj/hyt271.o	[ hyt271.c ]
 ./obj/main.o	[ main.c ]
 <library>	[ sleeptimerint.asm, sleeptimer.asm, psocconfigtbl.asm, psocconfig.asm, lcd.asm, i2cm.asm, rZ.asm ]
-[ rY.asm, rX.asm, r5.asm, r4.asm, r3.asm, r2.asm, r1.asm, r0.asm, divmod_16x16_16_util.asm, divmodu_16x16_16_util.asm ]
-[ i_div16_block_util.asm, mul16_util.asm, plcall.s, itoa.s, utoa.s, isdigit.s, islower.s, isspace.s ]
+[ rY.asm, rX.asm, r5.asm, r4.asm, r3.asm, r2.asm, r1.asm, r0.asm, divmodu_16x16_16_util.asm, fp2long_util.asm ]
+[ fp_analysiseject_util.asm, fp_clrreg_util.asm, fp_nan_res_util.asm, fp_saveres_util.asm ]
+[ fp_sendtoreg_util.asm, fp_sinf_res_util.asm, fp_szero_res_util.asm, fp_type_oprnd_util.asm ]
+[ fp_unnormal_util.asm, fpadd_util.asm, fpdiv_util.asm, fpsub_util.asm, i_div16_block_util.asm ]
+[ i_div32_not_util.asm, long2fp_util.asm, plcall.s, itoa.s, utoa.s, isdigit.s, islower.s, isspace.s ]
 [ ctype.s, toupper.s, sprintf.s, _printf.s ]
 
 Area Definitions

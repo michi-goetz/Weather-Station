@@ -35,8 +35,8 @@ void main(void)
 
 	//Variables
 	char lcdFirstLine[LCD_LENGTH], lcdSecondLine[LCD_LENGTH];
-	int displaymode = 0;
-	int temperature[5];
+	int displaymode = 1;
+ 	int temperature[5];
 	int humidity[5];
 	
 	
@@ -63,8 +63,9 @@ void main(void)
 
 	while(1) {
 	
-		
-		measuring(temperature, humidity);
+		I2Cm_Start();				//Initialize I2C
+		I2Cm_fSendStart( 0x28, 0);	//Send Measuring Request	
+		//measuring(temperature, humidity);
 	
 		
 		displaymode =1;
@@ -103,6 +104,7 @@ void main(void)
 		
 		// lets sleep for a while
 		SleepTimer_SyncWait(8, SleepTimer_WAIT_RELOAD);
+		measuring(temperature, humidity);
 	}
 	}
 
