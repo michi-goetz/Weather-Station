@@ -1,10 +1,25 @@
 Starting MAKE...
 creating project.mk -- no changes
-./main.c
+lib/i2cm.asm
+lib/lcd.asm
+lib/pga_rain.asm
+lib/pga_sun.asm
+lib/pga_wind.asm
+CAUTION lib/psocconfig.asm is older than PSoCConfig.xml or missing
+CAUTION you may need to generate source in PSoC Designer
+lib/psocconfig.asm
+lib/psocconfigtbl.asm
+lib/sar6_rain.asm
+lib/sar6_sun.asm
+lib/sar6_wind.asm
+lib/sleeptimer.asm
+lib/sleeptimerint.asm
+./boot.asm
+./hyt271.c
 Linking..
-  ROM 41% full. 6651 out of 16384 bytes used (does not include absolute areas).
+  ROM 41% full. 6645 out of 16384 bytes used (does not include absolute areas).
   RAM 21% full. 53 bytes used (does not include stack usage).
 Built with ICCM8C STD V7.05.00
  
-weather_station - 0 error(s) 0 warning(s) 10:55:49
+weather_station - 0 error(s) 0 warning(s) 10:27:45
 

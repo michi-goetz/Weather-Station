@@ -26,11 +26,11 @@ dbsym l humidity FFFFFFF9 pI
 dbsym l temperature FFFFFFFB pI
 dbline FFFFFFFF 0
 dbline A 4
-dbline 15 4
-dbline 17 C
-dbline 18 17
-dbline 19 23
-dbline 1B 2F
+dbline 13 4
+dbline 16 C
+dbline 17 17
+dbline 18 23
+dbline 1A 2F
 dbline 1E 34
 dbline 1F 3B
 dbline 20 47

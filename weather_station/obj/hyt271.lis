@@ -26,7 +26,7 @@
  0004           ; #include <stdlib.h>
  0004           ; 
  0004           ;       void measuring (int*temperature, int*humidity) {
- 0004                   .dbline 21
+ 0004                   .dbline 19
  0004           ;       
  0004           ;       
  0004           ;               //get temp and humidity here
@@ -35,22 +35,21 @@
  0004           ;               int capdata07, capdata813, tempdata, humdata;
  0004           ;               int i;
  0004           ;               
- 0004           ;               //I2Cm_Start();                         //Initialize I2C
- 0004           ;               //I2Cm_fSendStart( 0x28, 0);    //Send Measuring Request
  0004           ;               I2Cm_fSendStart( 0x28, 1);      //Send Data Fetch
  0004 10                push X
  0005 5701              mov X,1
  0007 5028              mov A,40
  0009 7C0000            xcall _I2Cm_fSendStart
- 000C                   .dbline 23
+ 000C                   .dbline 22
  000C           ;               
+ 000C           ;               // receive data
  000C           ;               capdata813=I2Cm_bRead (I2Cm_ACKslave);
  000C 5001              mov A,1
  000E 7C0000            xcall _I2Cm_bRead
  0011 20                pop X
  0012 5405              mov [X+5],A
  0014 560400            mov [X+4],0
- 0017                   .dbline 24
+ 0017                   .dbline 23
  0017           ;               capdata07 =I2Cm_bRead (I2Cm_ACKslave);
  0017 10                push X
  0018 5001              mov A,1
@@ -58,7 +57,7 @@
  001D 20                pop X
  001E 5409              mov [X+9],A
  0020 560800            mov [X+8],0
- 0023                   .dbline 25
+ 0023                   .dbline 24
  0023           ;               tempdata  =I2Cm_bRead (I2Cm_NAKslave);
  0023 10                push X
  0024 5000              mov A,0
@@ -66,13 +65,14 @@
  0029 20                pop X
  002A 5407              mov [X+7],A
  002C 560600            mov [X+6],0
- 002F                   .dbline 27
+ 002F                   .dbline 26
  002F           ;               
  002F           ;               I2Cm_SendStop();                        //Stop I2C      
  002F 10                push X
  0030 7C0000            xcall _I2Cm_SendStop
  0033 20                pop X
  0034                   .dbline 30
+ 0034           ;               
  0034           ;               
  0034           ;               // calculating temp and humidity
  0034           ;               capdata813=capdata813<<8;
@@ -289,7 +289,7 @@
  0183           ;               
  0183           ;               
  0183           ;               
- 0183           ;               //FIR filter
+ 0183           ;               //FIR filter for temperature  (not in funktion now)
  0183           ;               for(i=0; i<4; i++) temperature[i] = temperature[i+1];
  0183 560100            mov [X+1],0
  0186 560000            mov [X+0],0
@@ -337,7 +337,7 @@
  01CA 3F00              mvi [__r1],A
  01CC                   .dbline 45
  01CC           ;               
- 01CC           ;               
+ 01CC           ;               //FIR filter for temperature (not in funktion now)
  01CC           ;               for(i=0; i<4; i++) humidity[i] = humidity[i+1];
  01CC 560100            mov [X+1],0
  01CF 560000            mov [X+0],0
@@ -416,7 +416,7 @@
  021D           ;               
  021D           ;               void printtemp (char *firstLine, char *secondLine, int*temperature) {
  021D                   .dbline 58
- 021D           ;                                       //calculate the average of temperature
+ 021D           ;                                       //calculate the average of temperature (not in function nwo because to slow)
  021D           ;                                       int result, i;
  021D           ;                                       //result = 0;
  021D           ;                                       //for(i=0; i<5; i++) result = result + temperature [i]; 
@@ -489,7 +489,7 @@
  0259           ;                                       
  0259           ;               void printhum (char *firstLine, char *secondLine, int*humidity) {
  0259                   .dbline 74
- 0259           ;                                       //calculate the average of humidity
+ 0259           ;                                       //calculate the average of humidity (not in function nwo because to slow)
  0259           ;                                       int result, i;
  0259           ;                                       //result = 0;
  0259           ;                                       //for(i=0; i<5; i++) result = result + humidity [i];

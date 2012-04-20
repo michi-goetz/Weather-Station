@@ -63,23 +63,22 @@ void main(void)
 
 	while(1) {
 	
-		I2Cm_Start();				//Initialize I2C
-		I2Cm_fSendStart( 0x28, 0);	//Send Measuring Request	
-		//measuring(temperature, humidity);
+		I2Cm_Start();						//Initialize I2C
+		I2Cm_fSendStart( 0x28, 0);			//Send Measuring Request	
+		measuring(temperature, humidity); 	//measuring temperature and humidity
 	
 		
-		displaymode =1;
 		switch(displaymode) {
 			case 0:
 				// overview();
 				break;
 				
 			case 1:
-				printtemp(lcdFirstLine, lcdSecondLine, temperature);
+				printtemp(lcdFirstLine, lcdSecondLine, temperature); //write temp in the variable for the lcd
 				break;
 				
 			case 2:
-				printhum(lcdFirstLine, lcdSecondLine, humidity);
+				printhum(lcdFirstLine, lcdSecondLine, humidity); //wirte humidity in the variable for the lcd
 				break;
 				
 			case 3:
@@ -104,7 +103,7 @@ void main(void)
 		
 		// lets sleep for a while
 		SleepTimer_SyncWait(8, SleepTimer_WAIT_RELOAD);
-		measuring(temperature, humidity);
+		
 	}
 	}
 

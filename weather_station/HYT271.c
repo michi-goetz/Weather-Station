@@ -16,15 +16,15 @@
 		int capdata07, capdata813, tempdata, humdata;
 		int i;
 		
-		//I2Cm_Start();				//Initialize I2C
-		//I2Cm_fSendStart( 0x28, 0);	//Send Measuring Request
 		I2Cm_fSendStart( 0x28, 1);	//Send Data Fetch
 		
+		// receive data
 		capdata813=I2Cm_bRead (I2Cm_ACKslave);
 		capdata07 =I2Cm_bRead (I2Cm_ACKslave);
 		tempdata  =I2Cm_bRead (I2Cm_NAKslave);
 		
 		I2Cm_SendStop();			//Stop I2C	
+		
 		
 		// calculating temp and humidity
 		capdata813=capdata813<<8;
@@ -37,11 +37,11 @@
 		
 		
 		
-		//FIR filter
+		//FIR filter for temperature  (not in funktion now)
 		for(i=0; i<4; i++) temperature[i] = temperature[i+1];
 		temperature[4] = tempdata;
 		
-		
+		//FIR filter for temperature (not in funktion now)
 		for(i=0; i<4; i++) humidity[i] = humidity[i+1];
 		humidity[4] = humdata;
 		
@@ -50,7 +50,7 @@
 		
 		
 		void printtemp (char *firstLine, char *secondLine, int*temperature) {
-					//calculate the average of temperature
+					//calculate the average of temperature (not in function nwo because to slow)
 					int result, i;
 					//result = 0;
 					//for(i=0; i<5; i++) result = result + temperature [i]; 
@@ -66,7 +66,7 @@
 					
 					
 		void printhum (char *firstLine, char *secondLine, int*humidity) {
-					//calculate the average of humidity
+					//calculate the average of humidity (not in function nwo because to slow)
 					int result, i;
 					//result = 0;
 					//for(i=0; i<5; i++) result = result + humidity [i];
